@@ -18,7 +18,7 @@ namespace SpaceFightMonoGame
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
-		private Texture2D player;
+		private Player player;
 		public Game1()
 			: base()
 		{
@@ -49,7 +49,7 @@ namespace SpaceFightMonoGame
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 			
 			// TODO: use this.Content to load your game content here
-			player = Content.Load<Texture2D>("alienblaster");
+			player = new Player(Content.Load<Texture2D>("alienblaster"), Vector2.Zero);
 
 		}
 
@@ -74,6 +74,7 @@ namespace SpaceFightMonoGame
 
 			// TODO: Add your update logic here
 
+			player.Update(gameTime);
 			base.Update(gameTime);
 		}
 
@@ -85,14 +86,9 @@ namespace SpaceFightMonoGame
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			// TODO: Add your drawing code here
 			spriteBatch.Begin();
 
-
-
-			spriteBatch.Draw(player, Vector2.Zero, Color.Wheat);
-
-
+			player.Draw(spriteBatch);
 
 			spriteBatch.End();
 			base.Draw(gameTime);
